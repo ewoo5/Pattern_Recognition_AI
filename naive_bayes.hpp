@@ -17,6 +17,8 @@ class naive_bayes{
 		~naive_bayes();
 		void train();
 		void test();
+		
+		void close_file(); // to allow other things like the perceptron object to access the training/testing data.
 
 };
 

@@ -161,9 +161,9 @@ void naive_bayes::test(){
 		if(best_guess == correct_class){
 			performance_matrix[correct_class][0] += 1;
 			overall_correct += 1;
-		}else{
-			std::cout<<"Guess: "<<best_guess<<", Correct Label: "<<correct_class<<"\n";
-		}	
+		}//else{
+		//	std::cout<<"Guess: "<<best_guess<<", Correct Label: "<<correct_class<<"\n";
+		//}	
 		testing_txt.read(buffer, block_size);
 	}
 
@@ -200,9 +200,9 @@ void naive_bayes::test(){
 	if(best_guess == correct_class){
 		performance_matrix[correct_class][0] += 1;
 		overall_correct += 1;
-	}else{
-		std::cout<<"Guess: "<<best_guess<<", Correct Label: "<<correct_class<<"\n";
-	}	
+	}//else{
+	//	std::cout<<"Guess: "<<best_guess<<", Correct Label: "<<correct_class<<"\n";
+	//}	
 	testing_txt.read(buffer, block_size);
 	// repeat one last time
 
@@ -213,6 +213,15 @@ void naive_bayes::test(){
 	std::cout<<"Overall acuracy: "<<(float)overall_correct/(float)total<<"\n";
 }
 
+void naive_bayes::close_file(){
 
+	if(training_txt.is_open()){
+		training_txt.close();
+	}
+	if(testing_txt.is_open()){
+		testing_txt.close();
+	}
+
+}
 
 
