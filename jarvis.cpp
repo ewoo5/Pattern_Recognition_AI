@@ -18,15 +18,15 @@ int main(int argc, char * argv[]){
 	int height = (int)(argv[1][1] - '0' + 10*(argv[1][0] - '0'));
 	cout<<"height = "<<height<<"\n";
 
-	
+	/*
 	naive_bayes brain(width, height, argv[3], argv[4]);
 	brain.train();
 	brain.test();
 	brain.close_file();
-	
+	*/
 
 	perceptron neuron(width, height, argv[3], argv[4]);
-	neuron.train(10);
+	neuron.train(15);
 	
 	return 0;
 

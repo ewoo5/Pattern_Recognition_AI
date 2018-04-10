@@ -78,7 +78,7 @@ void naive_bayes::train(){
 	char buffer[block_size]; // add height because there will be '\n' at the end of each row.
 
 	training_txt.read(buffer, block_size);
-	int i = 0;
+	int i = 0, j;
 	while(!training_txt.eof() && !training_txt.fail()){
 		count += 1;
 		current_class = (int)(buffer[block_size - 2] - '0'); // class label is stored in the last-most character.
@@ -104,7 +104,220 @@ void naive_bayes::train(){
 	training_txt.read(buffer, block_size);
 
 	std::cout<<"number of training samples: "<<count<<"\n";
+
+	int left, right;
+	left = 2;
+	right = 8;
+	std::cout<<"\nLikelihood map for "<<left<<":\n";
+	for(row = 0; row < 32; row++){
+		for(column = 0; column < 32; column++){
+			float likelihood = (float)probability_matrix[left][row][column][0]/probability_matrix[left][row][column][1];
+			if(likelihood > 0.5){
+				if(likelihood > 0.75){
+					std::cout<<" ";
+				}else{
+					std::cout<<"+";
+				}
+			}else{
+				std::cout<<"-";
+			}
+		}
+		std::cout<<"\n";
+	}
+
+	std::cout<<"\nLikelihood map for "<<right<<":\n";
+	for(row = 0; row < 32; row++){
+		for(column = 0; column < 32; column++){
+			float likelihood = (float)probability_matrix[right][row][column][0]/probability_matrix[right][row][column][1];
+			if(likelihood > 0.5){
+				if(likelihood > 0.75){
+					std::cout<<" ";
+				}else{
+					std::cout<<"+";
+				}
+			}else{
+				std::cout<<"-";
+			}
+		}
+		std::cout<<"\n";
+	}
+
+	std::cout<<"\nLikelihood map for Odds(Fij = 1, "<<left<<", "<<right<<"):\n";
+	for(row = 0; row < 32; row++){
+		for(column = 0; column < 32; column++){
+			float likelihood = std::log((probability_matrix[left][row][column][0]/probability_matrix[left][row][column][1])/(probability_matrix[right][row][column][0]/probability_matrix[right][row][column][1]));
+			if(likelihood > -0.5){
+				if(likelihood > 0.5){
+					std::cout<<" ";
+				}else{
+					std::cout<<"+";
+				}
+			}else{
+				std::cout<<"-";
+			}
+		}
+		std::cout<<"\n";
+	}
+
+	left = 3;
+	right = 9;
+	std::cout<<"\nLikelihood map for "<<left<<":\n";
+	for(row = 0; row < 32; row++){
+		for(column = 0; column < 32; column++){
+			float likelihood = (float)probability_matrix[left][row][column][0]/probability_matrix[left][row][column][1];
+			if(likelihood > 0.5){
+				if(likelihood > 0.75){
+					std::cout<<" ";
+				}else{
+					std::cout<<"+";
+				}
+			}else{
+				std::cout<<"-";
+			}
+		}
+		std::cout<<"\n";
+	}
+
+	std::cout<<"\nLikelihood map for "<<right<<":\n";
+	for(row = 0; row < 32; row++){
+		for(column = 0; column < 32; column++){
+			float likelihood = (float)probability_matrix[right][row][column][0]/probability_matrix[right][row][column][1];
+			if(likelihood > 0.5){
+				if(likelihood > 0.75){
+					std::cout<<" ";
+				}else{
+					std::cout<<"+";
+				}
+			}else{
+				std::cout<<"-";
+			}
+		}
+		std::cout<<"\n";
+	}
+
+	std::cout<<"\nLikelihood map for Odds(Fij = 1, "<<left<<", "<<right<<"):\n";
+	for(row = 0; row < 32; row++){
+		for(column = 0; column < 32; column++){
+			float likelihood = std::log((probability_matrix[left][row][column][0]/probability_matrix[left][row][column][1])/(probability_matrix[right][row][column][0]/probability_matrix[right][row][column][1]));
+			if(likelihood > -0.5){
+				if(likelihood > 0.5){
+					std::cout<<" ";
+				}else{
+					std::cout<<"+";
+				}
+			}else{
+				std::cout<<"-";
+			}
+		}
+		std::cout<<"\n";
+	}
 	
+	left = 9;
+	right = 5;
+	std::cout<<"\nLikelihood map for "<<left<<":\n";
+	for(row = 0; row < 32; row++){
+		for(column = 0; column < 32; column++){
+			float likelihood = (float)probability_matrix[left][row][column][0]/probability_matrix[left][row][column][1];
+			if(likelihood > 0.5){
+				if(likelihood > 0.75){
+					std::cout<<" ";
+				}else{
+					std::cout<<"+";
+				}
+			}else{
+				std::cout<<"-";
+			}
+		}
+		std::cout<<"\n";
+	}
+
+	std::cout<<"\nLikelihood map for "<<right<<":\n";
+	for(row = 0; row < 32; row++){
+		for(column = 0; column < 32; column++){
+			float likelihood = (float)probability_matrix[right][row][column][0]/probability_matrix[right][row][column][1];
+			if(likelihood > 0.5){
+				if(likelihood > 0.75){
+					std::cout<<" ";
+				}else{
+					std::cout<<"+";
+				}
+			}else{
+				std::cout<<"-";
+			}
+		}
+		std::cout<<"\n";
+	}
+
+	std::cout<<"\nLikelihood map for Odds(Fij = 1, "<<left<<", "<<right<<"):\n";
+	for(row = 0; row < 32; row++){
+		for(column = 0; column < 32; column++){
+			float likelihood = std::log((probability_matrix[left][row][column][0]/probability_matrix[left][row][column][1])/(probability_matrix[right][row][column][0]/probability_matrix[right][row][column][1]));
+			if(likelihood > -0.5){
+				if(likelihood > 0.5){
+					std::cout<<" ";
+				}else{
+					std::cout<<"+";
+				}
+			}else{
+				std::cout<<"-";
+			}
+		}
+		std::cout<<"\n";
+	}
+
+	left = 4;
+	right = 7;
+	std::cout<<"\nLikelihood map for "<<left<<":\n";
+	for(row = 0; row < 32; row++){
+		for(column = 0; column < 32; column++){
+			float likelihood = (float)probability_matrix[left][row][column][0]/probability_matrix[left][row][column][1];
+			if(likelihood > 0.5){
+				if(likelihood > 0.75){
+					std::cout<<" ";
+				}else{
+					std::cout<<"+";
+				}
+			}else{
+				std::cout<<"-";
+			}
+		}
+		std::cout<<"\n";
+	}
+
+	std::cout<<"\nLikelihood map for "<<right<<":\n";
+	for(row = 0; row < 32; row++){
+		for(column = 0; column < 32; column++){
+			float likelihood = (float)probability_matrix[right][row][column][0]/probability_matrix[right][row][column][1];
+			if(likelihood > 0.5){
+				if(likelihood > 0.75){
+					std::cout<<" ";
+				}else{
+					std::cout<<"+";
+				}
+			}else{
+				std::cout<<"-";
+			}
+		}
+		std::cout<<"\n";
+	}
+
+	std::cout<<"\nLikelihood map for Odds(Fij = 1, "<<left<<", "<<right<<"):\n";
+	for(row = 0; row < 32; row++){
+		for(column = 0; column < 32; column++){
+			float likelihood = std::log((probability_matrix[left][row][column][0]/probability_matrix[left][row][column][1])/(probability_matrix[right][row][column][0]/probability_matrix[right][row][column][1]));
+			if(likelihood > -0.5){
+				if(likelihood > 0.5){
+					std::cout<<" ";
+				}else{
+					std::cout<<"+";
+				}
+			}else{
+				std::cout<<"-";
+			}
+		}
+		std::cout<<"\n";
+	}
+
 }
 
 /*
@@ -112,12 +325,25 @@ void naive_bayes::train(){
 */
 void naive_bayes::test(){
 
-	int performance_matrix[10][2]; // preformance_matrix[class label][0-numerator; 1-denominator]
-	int i;
+	int performance_matrix[10][2]; // performance_matrix[class label][0-numerator; 1-denominator]
+	int confusion_matrix[10][10]; // [correct number][guessed number], value is the number times that it is in that guess.
+	int posterior_matrix[10][2][2]; // [class][0-best; 1-worst][0-best posterior; 1-token number]
+	int i, j, token = 0;
 	int overall_correct = 0, total = 0;
 	for(i = 0; i < 10; i++){
 		performance_matrix[i][0] = 0;
 		performance_matrix[i][1] = 0;
+	}
+	for(i = 0; i < 10; i++){
+		for(j = 0; j < 10; j++){
+			confusion_matrix[i][j] = 0;
+		}
+	}
+	for(i = 0; i < 10; i++){
+		posterior_matrix[i][0][0] = -9999999;
+		posterior_matrix[i][0][1] = 0;
+		posterior_matrix[i][1][0] = 9999999;
+		posterior_matrix[i][1][1] = 0;
 	}	
 
 	int correct_class, best_guess, row, column, block_size;
@@ -132,7 +358,6 @@ void naive_bayes::test(){
 		best_prob = -10000000;
 		correct_class = buffer[block_size - 2] - '0';
 
-		int i, j;
 		float prob;
 		for(i = 0; i < 10; i++){ // loop through all possible number/classes to see which has the best probability (MAP - maximum a posteriori).
 			prob = 0;
@@ -153,25 +378,37 @@ void naive_bayes::test(){
 				best_prob = prob;
 				best_guess = i;
 			}
-			//std::cout<<"i: "<<i<<", prob: "<<prob<<"; ";
+
 		}
-		//std::cout<<"Guess: "<<best_guess<<", Correct Label: "<<correct_class<<"\n";
+
 		performance_matrix[correct_class][1] += 1;
 		total += 1;
 		if(best_guess == correct_class){
 			performance_matrix[correct_class][0] += 1;
 			overall_correct += 1;
-		}//else{
-		//	std::cout<<"Guess: "<<best_guess<<", Correct Label: "<<correct_class<<"\n";
-		//}	
+		}
+		
+		confusion_matrix[correct_class][best_guess] += 1;
+		
+		if(best_prob > posterior_matrix[correct_class][0][0]){
+			posterior_matrix[correct_class][0][0] = best_prob;
+			posterior_matrix[correct_class][0][1] = token;
+		}
+
+		if(best_prob < posterior_matrix[correct_class][1][0]){
+			posterior_matrix[correct_class][1][0] = best_prob;
+			posterior_matrix[correct_class][1][1] = token;
+		}
+			
 		testing_txt.read(buffer, block_size);
+		token++;
+
 	}
 
 	// Repeat one last time
 	best_prob = -10000000;
 	correct_class = buffer[block_size - 2] - '0';
 
-	int j;
 	float prob;
 	for(i = 0; i < 10; i++){ // loop through all possible number/classes to see which has the best probability (MAP - maximum a posteriori).
 		prob = 0;
@@ -192,25 +429,77 @@ void naive_bayes::test(){
 			best_prob = prob;
 			best_guess = i;
 		}
-		//std::cout<<"i: "<<i<<", prob: "<<prob<<"; ";
 	}
-	//std::cout<<"Guess: "<<best_guess<<", Correct Label: "<<correct_class<<"\n";
+	
 	performance_matrix[correct_class][1] += 1;
 	total += 1;
 	if(best_guess == correct_class){
 		performance_matrix[correct_class][0] += 1;
 		overall_correct += 1;
-	}//else{
-	//	std::cout<<"Guess: "<<best_guess<<", Correct Label: "<<correct_class<<"\n";
-	//}	
-	testing_txt.read(buffer, block_size);
-	// repeat one last time
+	}
+	
+	confusion_matrix[correct_class][best_guess] += 1;
+		
+	if(best_prob > posterior_matrix[correct_class][0][0]){
+		posterior_matrix[correct_class][0][0] = best_prob;
+		posterior_matrix[correct_class][0][1] = token;
+	}
 
-
+	if(best_prob < posterior_matrix[correct_class][1][0]){
+		posterior_matrix[correct_class][1][0] = best_prob;
+		posterior_matrix[correct_class][1][1] = token;
+	}
+	
 	for(i = 0; i < 10; i++){
 		std::cout<<"class: "<<i<<", fit: "<<(float)performance_matrix[i][0]/(float)performance_matrix[i][1]<<"\n";
 	}
 	std::cout<<"Overall acuracy: "<<(float)overall_correct/(float)total<<"\n";
+
+	std::cout<<"\n*************************Confusion Matrix************************\n";
+	std::cout<<"\t\t\t\t\tGuess\t\t\t\t\t\n\t\t";
+	for(i = 0; i < 10; i++){
+		std::cout<<i<<":\t";
+	}
+	std::cout<<"\n\nClass";
+	for(i = 0; i < 10; i++){
+		std::cout<<"\t"<<i<<":";
+		float guess_percen;
+		int class_total = 0;
+		for(j = 0; j < 10; j++){
+			class_total += confusion_matrix[i][j];
+		}
+		for(j = 0; j < 10;j++){
+			guess_percen = (float) confusion_matrix[i][j]/class_total;
+			std::cout<<"\t";
+			//std::cout.precision(3);
+			std::cout<<guess_percen;
+		}
+		std::cout<<"\n";
+	}
+
+	training_txt.clear();
+	testing_txt.clear();
+	training_txt.seekg(0, training_txt.beg);
+	testing_txt.seekg(0, testing_txt.beg);
+
+	std::cout<<"\n";
+	for(i = 0; i < 10; i++){
+		std::cout<<"Highest Posterior for "<<i<<", with value "<<posterior_matrix[i][0][0]<<":\n";
+		testing_txt.seekg(posterior_matrix[i][0][1]*block_size, testing_txt.beg);
+		testing_txt.read(buffer, block_size);
+		for(j = 0; j < block_size; j++){
+			std::cout<<buffer[j];
+		}
+		
+		std::cout<<"Lowest Posterior for "<<i<<", with value "<<posterior_matrix[i][1][0]<<":\n";
+		testing_txt.seekg(posterior_matrix[i][1][1]*block_size, testing_txt.beg);
+		testing_txt.read(buffer, block_size);
+		for(j = 0; j < block_size; j++){
+			std::cout<<buffer[j];
+		}
+		std::cout<<"\n";
+	}
+	
 }
 
 void naive_bayes::close_file(){

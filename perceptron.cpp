@@ -107,7 +107,7 @@ void perceptron::train(int epochs){
 		
 		for(i = 0; i < training_size; i++){
 
-			load_buffer(buffer, false, i);
+			load_buffer(buffer, true, i);
 			number = buffer[width*height + 1];
 			//std::cout<<"Correct number: "<<number;
 			current_guess = guess(buffer);
